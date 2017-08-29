@@ -11,8 +11,9 @@ namespace MotoDriveBike
     {
         CookieDictionary cookieB18 = new CookieDictionary();
         nethouse nethouse = new nethouse();
-
+        
         string otv;
+        int countDeleteTovar;
 
         public Form1()
         {
@@ -32,6 +33,7 @@ namespace MotoDriveBike
             Properties.Settings.Default.Save();
 
             List<string> product = new List<string>();
+            countDeleteTovar = 0;
 
             cookieB18 = nethouse.CookieNethouse(tbLogin.Text, tbPassword.Text);
 
@@ -77,7 +79,7 @@ namespace MotoDriveBike
                     string productCart = cartProductDB[y].ToString();
 
                     string firstNameDB = new Regex("(?<=class=\"item-brandName\">)[\\w\\W]*?(?=</div>)").Match(productCart).ToString().Trim();
-                    string lastNameDB = new Regex("(?<=title=\").*?(?=\">)").Match(productCart).ToString();
+                    string lastNameDB = new Regex("(?<=title=\").*?(?=\">)").Match(productCart).ToString().Trim();
 
                     string nameDB = firstNameDB + " " + lastNameDB;
 
@@ -91,8 +93,10 @@ namespace MotoDriveBike
                 if (!searchProduct)
                 {
                     nethouse.DeleteProduct(cookieB18, product);
+                    countDeleteTovar++;
                 }
             }
+            MessageBox.Show("Удалено товаров: " + countDeleteTovar);
         }
     }
 }
