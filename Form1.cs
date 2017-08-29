@@ -16,5 +16,18 @@ namespace MotoDriveBike
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            tbLogin.Text = Properties.Settings.Default.login;
+            tbPassword.Text = Properties.Settings.Default.password;
+        }
+
+        private void btnUpdateMoto_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.login = tbLogin.Text;
+            Properties.Settings.Default.password = tbPassword.Text;
+            Properties.Settings.Default.Save();
+        }
     }
 }
