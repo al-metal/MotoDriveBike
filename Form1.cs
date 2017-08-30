@@ -32,7 +32,6 @@ namespace MotoDriveBike
             Properties.Settings.Default.password = tbPassword.Text;
             Properties.Settings.Default.Save();
 
-            List<string> product = new List<string>();
             countDeleteTovar = 0;
 
             cookieB18 = nethouse.CookieNethouse(tbLogin.Text, tbPassword.Text);
@@ -43,7 +42,24 @@ namespace MotoDriveBike
                 return;
             }
 
-            otv = nethouse.getRequest("https://bike18.ru/products/category/dorozhnye-bez-probega-po-rf?page=all");
+            UpdateProducts(cookieB18, "https://bike18.ru/products/category/dorozhnye-bez-probega-po-rf");
+            UpdateProducts(cookieB18, "https://bike18.ru/products/category/krossovye-bez-probega-po-rf");
+            UpdateProducts(cookieB18, "https://bike18.ru/products/category/enduro-bez-probega-po-rf");
+            UpdateProducts(cookieB18, "https://bike18.ru/products/category/motard-bez-probega-po-rf");
+            UpdateProducts(cookieB18, "https://bike18.ru/products/category/sportivnye-bez-probega-po-rf");
+            UpdateProducts(cookieB18, "https://bike18.ru/products/category/choppery-kruizery-bez-probega-po-rf");
+
+            MessageBox.Show("Удалено товаров: " + countDeleteTovar);
+        }
+
+        private void UpdateProducts(CookieDictionary cookieB18, string url)
+        {
+            List<string> product = new List<string>();
+
+            if (!url.Contains("?page=all"))
+                url = url + "?page=all";
+
+            otv = nethouse.getRequest(url);
 
             MatchCollection productsUrl = new Regex("(?<=<div class=\"product-item__link\"><a href=\").*?(?=\">)").Matches(otv);
             for (int i = 0; productsUrl.Count > i; i++)
@@ -96,7 +112,6 @@ namespace MotoDriveBike
                     countDeleteTovar++;
                 }
             }
-            MessageBox.Show("Удалено товаров: " + countDeleteTovar);
         }
     }
 }
