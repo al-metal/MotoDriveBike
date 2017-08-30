@@ -11,7 +11,7 @@ namespace MotoDriveBike
     {
         CookieDictionary cookieB18 = new CookieDictionary();
         nethouse nethouse = new nethouse();
-        
+
         string otv;
         int countDeleteTovar;
 
@@ -26,7 +26,7 @@ namespace MotoDriveBike
             tbPassword.Text = Properties.Settings.Default.password;
         }
 
-        private void btnUpdateMoto_Click(object sender, EventArgs e)
+        private void BtnUpdateMoto_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.login = tbLogin.Text;
             Properties.Settings.Default.password = tbPassword.Text;
@@ -46,7 +46,7 @@ namespace MotoDriveBike
             otv = nethouse.getRequest("https://bike18.ru/products/category/dorozhnye-bez-probega-po-rf?page=all");
 
             MatchCollection productsUrl = new Regex("(?<=<div class=\"product-item__link\"><a href=\").*?(?=\">)").Matches(otv);
-            for(int i = 0; productsUrl.Count > i; i++)
+            for (int i = 0; productsUrl.Count > i; i++)
             {
                 string urlProduct = productsUrl[i].ToString();
                 product = nethouse.GetProductList(cookieB18, urlProduct);
@@ -73,17 +73,17 @@ namespace MotoDriveBike
 
                 MatchCollection cartProductDB = new Regex("class=\"item-brandName\">[\\w\\W]*?</a>").Matches(otv);
 
-                for(int y = 0; cartProductDB.Count > y; y++)
+                for (int y = 0; cartProductDB.Count > y; y++)
                 {
                     searchProduct = false;
                     string productCart = cartProductDB[y].ToString();
 
-                    string firstNameDB = new Regex("(?<=class=\"item-brandName\">)[\\w\\W]*?(?=</div>)").Match(productCart).ToString().Trim();
-                    string lastNameDB = new Regex("(?<=title=\").*?(?=\">)").Match(productCart).ToString().Trim();
+                    string urlProductDB = new Regex("(?<=a href=\").*?(?=\")").Match(productCart).ToString().Trim();
 
-                    string nameDB = firstNameDB + " " + lastNameDB;
+                    otv = nethouse.getRequest(urlProductDB);
+                    string articlDB = new Regex("(?<=Код товара:).*?(?=<br>)").Match(otv).ToString().Trim();
 
-                    if(nameDB == productName)
+                    if (articlDB == productArticle)
                     {
                         searchProduct = true;
                         break;

@@ -32,7 +32,7 @@
             this.tbLogin = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnUpdateMoto = new System.Windows.Forms.Button();
+            this.BtnUpdateMoto = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbPassword
@@ -68,22 +68,22 @@
             this.label2.TabIndex = 19;
             this.label2.Text = "password Bike18";
             // 
-            // btnUpdateMoto
+            // BtnUpdateMoto
             // 
-            this.btnUpdateMoto.Location = new System.Drawing.Point(271, 6);
-            this.btnUpdateMoto.Name = "btnUpdateMoto";
-            this.btnUpdateMoto.Size = new System.Drawing.Size(136, 23);
-            this.btnUpdateMoto.TabIndex = 20;
-            this.btnUpdateMoto.Text = "Обработать мотоциклы";
-            this.btnUpdateMoto.UseVisualStyleBackColor = true;
-            this.btnUpdateMoto.Click += new System.EventHandler(this.btnUpdateMoto_Click);
+            this.BtnUpdateMoto.Location = new System.Drawing.Point(271, 6);
+            this.BtnUpdateMoto.Name = "BtnUpdateMoto";
+            this.BtnUpdateMoto.Size = new System.Drawing.Size(136, 23);
+            this.BtnUpdateMoto.TabIndex = 20;
+            this.BtnUpdateMoto.Text = "Обработать мотоциклы";
+            this.BtnUpdateMoto.UseVisualStyleBackColor = true;
+            this.BtnUpdateMoto.Click += new System.EventHandler(this.BtnUpdateMoto_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(417, 261);
-            this.Controls.Add(this.btnUpdateMoto);
+            this.Controls.Add(this.BtnUpdateMoto);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbPassword);
@@ -102,7 +102,7 @@
         private System.Windows.Forms.TextBox tbLogin;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnUpdateMoto;
+        private System.Windows.Forms.Button BtnUpdateMoto;
     }
 }
 
